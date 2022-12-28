@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Resturant>
+
+@{
+    ViewData["Title"] = "list Of Store";
+}
+
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                    <th>@Html.DisplayNameFor(model=> model.Image)</th>
+                    <th>@Html.DisplayNameFor(model=> model.NameAR)</th>
+                    <th>@Html.DisplayNameFor(model=> model.NameEN)</th>
+                    <th>@Html.DisplayNameFor(model=> model.Description)</th>
+                        <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var resturant in Model)
+                {
+                    <tr>
+                        <td class="align-middle">
+                            <img class="rounded-circle" src="@resturant.Image" alt="@resturant.NameEN : @resturant.NameAR" style="max-width:150px" />
+                        </td>
+                        <td class="align-middle">@Html.DisplayFor(actorModel => resturant.NameEN)</td>
+                        <td class="align-middle">@Html.DisplayFor(actorModel => resturant.NameAR)</td>
+                        <td class="align-middle">@Html.DisplayFor(actorModel => resturant.Description)</td>
+                                <td class="align-middle">
+                                <a asp-action="Edit" asp-route-id="@resturant.Id" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i>Edit </a> |
+                                <a asp-action="Details" asp-route-id="@resturant.Id" class="btn btn-outline-info"><i class="bi bi-eye"></i>Details </a> |
+                                <a asp-action="Delete" asp-route-id="@resturant.Id" class="btn btn-danger" style="color:white;"><i class="bi bi-trash"></i>Delete </a>
+                            </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@await Html.PartialAsync("_CreateItem","Resturant")
